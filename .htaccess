@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Bloquear acceso a archivos sensibles por seguridad
+    RewriteRule ^(\.env|\.git|composer\.lock|composer\.json|package\.json|package-lock\.json) - [F,L,NC]
+
+    # Redirigir todas las peticiones a la carpeta public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
