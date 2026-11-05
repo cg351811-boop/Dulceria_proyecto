@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.4-apache
 
 # Instalar dependencias del sistema y extensiones de PHP (MySQL, PostgreSQL, etc.)
 RUN apt-get update && apt-get install -y \
@@ -24,7 +24,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Instalar dependencias de Laravel en modo producción
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
 
 # Configurar Apache para que apunte a la carpeta /public de Laravel
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
