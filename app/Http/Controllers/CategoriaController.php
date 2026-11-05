@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -87,6 +88,12 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
+        // Solo el Usuario Principal puede eliminar categorías
+        if (! Auth::user() || ! Auth::user()->isPrincipal()) {
+            return redirect()->route('categorias.index')
+                ->with('error', '⛔ Acceso denegado: Solo el Usuario Principal tiene permisos para eliminar categorías.');
+        }
+
         $categoria->delete();
 
         return redirect()->route('categorias.index')

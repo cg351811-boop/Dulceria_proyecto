@@ -44,10 +44,14 @@ class RegisteredUserController extends Controller
             'password.confirmed' => 'Las contraseñas no coinciden.',
         ]);
 
+        // El primer usuario registrado en el sistema se convierte en el Usuario Principal
+        $rol = User::count() === 0 ? 'principal' : 'usuario';
+
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => trim($request->name),
+            'email'    => trim($request->email),
             'password' => Hash::make($request->password), 
+            'role'     => $rol,
         ]);
 
         event(new Registered($user));

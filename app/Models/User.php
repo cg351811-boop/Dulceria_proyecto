@@ -21,8 +21,45 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
         'last_session_id',
     ];
+
+    /**
+     * Comprueba si el usuario es el Usuario Principal (Super Admin).
+     */
+    public function isPrincipal(): bool
+    {
+        return $this->role === 'principal';
+    }
+
+    /**
+     * Comprueba si el usuario tiene privilegios administrativos (Admin o Principal).
+     */
+    public function isAdmin(): bool
+    {
+        return in_array($this->role, ['admin', 'principal']);
+    }
+
+    /**
+     * Comprueba si es un usuario común estándar.
+     */
+    public function isComun(): bool
+    {
+        return $this->role === 'usuario' || empty($this->role);
+    }
+
+    /**
+     * Nombre legible del rol.
+     */
+    public function getNombreRolAttribute(): string
+    {
+        return match($this->role) {
+            'principal' => '👑 Usuario Principal',
+            'admin'     => '⭐ Administrador',
+            default     => '👤 Usuario Común',
+        };
+    }
 
     /**
      * The attributes that should be hidden for serialization.

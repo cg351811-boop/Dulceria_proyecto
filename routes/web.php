@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\DulceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +28,16 @@ Route::middleware('auth')->group(function () {
 
     // Inventario de dulces
     Route::resource('dulces', DulceController::class);
+
+    // Módulo de Ventas (Punto de Venta)
+    Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
+    Route::post('/ventas', [VentaController::class, 'store'])->name('ventas.store');
+    Route::get('/ventas/historial', [VentaController::class, 'historial'])->name('ventas.historial');
+
+    // Módulo de Compras (Abastecimiento y cálculo de total)
+    Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
+    Route::post('/compras', [CompraController::class, 'store'])->name('compras.store');
+    Route::get('/compras/historial', [CompraController::class, 'historial'])->name('compras.historial');
 
     // Gestión de usuarios
     Route::resource('usuarios', UsuarioController::class);

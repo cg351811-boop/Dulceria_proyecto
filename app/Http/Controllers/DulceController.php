@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Dulce;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DulceController extends Controller
@@ -157,6 +158,12 @@ class DulceController extends Controller
      */
     public function destroy(Dulce $dulce)
     {
+        // Solo el Usuario Principal puede eliminar dulces y sus imágenes
+        if (! Auth::user() || ! Auth::user()->isPrincipal()) {
+            return redirect()->route('dulces.index')
+                ->with('error', '⛔ Acceso denegado: Solo el Usuario Principal tiene permisos para eliminar dulces y sus imágenes.');
+        }
+
         if ($dulce->imagen && Storage::disk('public')->exists($dulce->imagen)) {
             Storage::disk('public')->delete($dulce->imagen);
         }
@@ -164,6 +171,6 @@ class DulceController extends Controller
         $dulce->delete();
 
         return redirect()->route('dulces.index')
-            ->with('success', '🗑️ Dulce eliminado del inventario.');
+            ->with('success', '🗑️ Dulce e imagen eliminados del inventario.');
     }
 }
