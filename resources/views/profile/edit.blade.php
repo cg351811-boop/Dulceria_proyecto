@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="mb-2 pt-2">
+    <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Volver al Panel
+    </a>
+</div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2"><i class="bi bi-person-gear text-primary me-2"></i>Configuración del Sistema - Perfil de Usuario</h1>
 </div>
 
@@ -26,7 +31,28 @@
                 </div>
             </div>
             <div class="card-body p-4">
+                {{-- Rol del Usuario --}}
+                <div class="mb-4 p-3 bg-light rounded border d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-muted small">Tu rol en el sistema:</div>
+                        <span class="fs-6 fw-bold">{{ Auth::user()->nombre_rol }}</span>
+                    </div>
+                    @if(Auth::user()->isComun())
+                        <span class="badge bg-secondary">Solo datos propios</span>
+                    @elseif(Auth::user()->isPrincipal())
+                        <span class="badge bg-warning text-dark">Control Total</span>
+                    @else
+                        <span class="badge bg-primary">Administrador</span>
+                    @endif
+                </div>
+
                 {{-- Alertas si hay errores del servidor --}}
+                @if(session('error'))
+                    <div class="alert alert-danger mb-3">
+                        <i class="bi bi-shield-slash me-2"></i>{{ session('error') }}
+                    </div>
+                @endif
+
                 @if($errors->any())
                     <div class="alert alert-danger mb-4">
                         <strong class="d-block mb-1">Por favor corrige los siguientes errores:</strong>

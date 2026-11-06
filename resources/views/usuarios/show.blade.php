@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Detalles del Usuario</h2>
         <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">
-            Volver a la Lista
+            <i class="bi bi-arrow-left"></i> Volver a Usuarios
         </a>
     </div>
 

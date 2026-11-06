@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="mb-2 pt-2">
+    <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Volver al Panel
+    </a>
+</div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2"><i class="bi bi-cart-check text-success me-2"></i>Punto de Ventas (Dulcería)</h1>
     <div>
         <a href="{{ route('ventas.historial') }}" class="btn btn-outline-primary">

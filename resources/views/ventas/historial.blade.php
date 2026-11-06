@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="mb-2 pt-2">
+    <a href="{{ route('ventas.index') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Volver a Punto de Ventas
+    </a>
+</div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2"><i class="bi bi-clock-history text-primary me-2"></i>Historial de Ventas Registradas</h1>
     <a href="{{ route('ventas.index') }}" class="btn btn-outline-success">
         <i class="bi bi-cart-check me-1"></i>Ir a Punto de Ventas

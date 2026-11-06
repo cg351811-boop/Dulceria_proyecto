@@ -5,7 +5,7 @@
     @if(request('sesion_cerrada') == '1' || session('sesion_cerrada'))
         <div class="mb-4 p-4 rounded-lg bg-red-100 border border-red-300 text-red-800 text-sm flex items-start gap-3 shadow-sm" style="background-color: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem;">
             <span style="font-size: 1.5rem; line-height: 1;">⚠️</span>
-            <div>,ju
+            <div>
                 <strong style="display: block; font-weight: 700; margin-bottom: 0.25rem;">Sesión finalizada por seguridad</strong>
                 Se cerró la sesión porque se inició sesión en otro dispositivo con tu cuenta.<br>
                 Por tu seguridad, esta sesión ha sido finalizada automáticamente.
@@ -54,15 +54,15 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+        <div class="flex items-center justify-between mt-4">
+            @if (Route::has('register'))
+                <a class="underline text-sm text-indigo-600 hover:text-indigo-900 rounded-md focus:outline-none" href="{{ route('register') }}">
+                    ¿No tienes cuenta? Regístrate aquí
                 </a>
             @endif
 
             <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+                {{ __('Iniciar Sesión') }}
             </x-primary-button>
         </div>
     </form>

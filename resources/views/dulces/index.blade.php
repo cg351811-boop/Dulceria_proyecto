@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="mb-2 pt-2">
+    <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Volver al Panel
+    </a>
+</div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2"><i class="bi bi-box-seam text-primary me-2"></i>Administración de Inventario (Dulces)</h1>
     <a href="{{ route('dulces.create') }}" class="btn btn-primary">
         <i class="bi bi-plus-circle me-1"></i>+ Agregar Dulce
@@ -118,13 +123,15 @@
                                     <a href="{{ route('dulces.edit', $dulce) }}" class="btn btn-sm btn-outline-warning" title="Editar">
                                         <i class="bi bi-pencil"></i>
                                     </a>
+                                    @if(Auth::user() && Auth::user()->isPrincipal())
                                     <form action="{{ route('dulces.destroy', $dulce) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que deseas eliminar este dulce?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar (Solo Usuario Principal)">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

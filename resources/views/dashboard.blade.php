@@ -1,14 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2"><i class="bi bi-speedometer2 text-primary me-2"></i>Panel de Control (Dulcería)</h1>
-    <div class="btn-toolbar mb-2 mb-md-0 gap-2">
-        <a href="{{ route('dulces.create') }}" class="btn btn-sm btn-primary">
-            <i class="bi bi-plus-circle me-1"></i>+ Agregar Dulce
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom gap-2">
+    <h1 class="h2 mb-0"><i class="bi bi-speedometer2 text-primary me-2"></i>Panel de Control (Dulcería)</h1>
+    <div class="btn-toolbar gap-2 flex-wrap">
+        <a href="{{ route('ventas.index') }}" class="btn btn-sm btn-success shadow-sm">
+            <i class="bi bi-cart-check me-1"></i> Punto de Venta
         </a>
-        <a href="{{ route('categorias.create') }}" class="btn btn-sm btn-outline-primary">
-            <i class="bi bi-tags me-1"></i>+ Nueva Categoría
+        <a href="{{ route('compras.index') }}" class="btn btn-sm btn-warning text-dark shadow-sm">
+            <i class="bi bi-box-seam me-1"></i> Registrar Compra
+        </a>
+        <a href="{{ route('dulces.create') }}" class="btn btn-sm btn-primary shadow-sm">
+            <i class="bi bi-plus-circle me-1"></i>+ Dulce
+        </a>
+        <a href="{{ route('categorias.create') }}" class="btn btn-sm btn-outline-primary shadow-sm">
+            <i class="bi bi-tags me-1"></i>+ Categoría
         </a>
     </div>
 </div>

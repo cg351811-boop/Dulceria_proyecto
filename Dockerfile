@@ -41,8 +41,8 @@ RUN mkdir -p /var/www/html/storage/framework/sessions \
              /var/www/html/database \
     && touch /var/www/html/database/database.sqlite \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database \
-    && chmod 664 /var/www/html/database/database.sqlite
+    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database \
+    && chmod 666 /var/www/html/database/database.sqlite
 
 # Configurar script de inicio
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
