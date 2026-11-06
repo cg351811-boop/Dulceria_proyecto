@@ -50,4 +50,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
+Route::get('/.well-known/acme-challenge/{token}', function ($token) {
+    if ($token === '1jrmohd33p5IKxRqtDqrveOPiu4oY0p4t2MaeQw3Nm8') {
+        return response('1jrmohd33p5IKxRqtDqrveOPiu4oY0p4t2MaeQw3Nm8.ug07ou7WpUoLOvyFK2VmVO5zS-sqnKFwGZDaLw2yg9Q', 200)
+            ->header('Content-Type', 'text/plain');
+    }
+    abort(404);
+});
+
 require __DIR__.'/auth.php';
